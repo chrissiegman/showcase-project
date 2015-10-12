@@ -1,0 +1,16 @@
+*.pyc
+*.pyo
+settings.py
+db.sqlite3
+
+
+.installed.cfg
+bin
+develop-eggs
+dist
+downloads
+eggs
+parts
+src/*.egg-info
+lib
+lib64
