@@ -5,7 +5,11 @@
 {% block title %}CONTACT{% endblock %}
 
 {% block body_block%}
-    <p>
-        This is the contact page.
-    </p>
+    <h1>Contact me!</h1>
+    <form action = "" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type ="submit">Submit</button>
+    </form>
+
 {% endblock %}
