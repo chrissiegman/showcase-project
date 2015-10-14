@@ -4,6 +4,7 @@
 settings.py
 db.sqlite3
 
+authinfo.py
 
 .installed.cfg
 bin
