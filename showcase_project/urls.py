@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^showcase/', include('showcase_app.urls')),
+    url(r'^biebfeed/', include('biebfeed.urls')),
 ]
