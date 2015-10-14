@@ -1,11 +1,18 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
-<html>
-<body>
-<p>
-    This is the BIEBFEED.
-</p>
-</body>
+{% load staticfiles %}
 
+{% block title %}BIEBFEED{% endblock %}
 
-</html>
+{% block body_block %}
+<h1>
+    This is the BIEBFEED. Here are the 5 most recent Justin Bieber tweets.
+</h1>
+<ul>
+    <li>{{ first_tweet }}</li>
+    <li>{{ second_tweet }}</li>
+    <li>{{ third_tweet }}</li>
+    <li>{{ fourth_tweet }}</li>
+    <li>{{ fifth_tweet }}</li>
+</ul>
+{% endblock %}

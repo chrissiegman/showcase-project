@@ -3,6 +3,6 @@ from django.shortcuts import render, HttpResponse
 from biebfeed import twitterbot
 
 def index(request):
+    context_dict = twitterbot.get_user_tweets('justinbieber')
 
-    return HttpResponse(twitterbot.print_user_tweet('justinbieber'))
-    #return render(request, 'biebfeed/index.html', {})
+    return render(request, 'biebfeed/index.html', context_dict)
