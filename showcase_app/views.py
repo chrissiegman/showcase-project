@@ -39,7 +39,11 @@ def contact(request):
             )
             email.send()
             return HttpResponse('Email Sent')
+            #return render(request, 'showcase_app/projects.html', {})
+            # should this be an HttpResponseRedirect?
+
         else:
             return HttpResponse('Error: form submission invalid.')
+            #return render(request, 'showcase_app/projects.html', {})
     else:
         return render(request, 'showcase_app/contact.html', {'form': form_class})

@@ -22,14 +22,23 @@ def get_user_tweet(screen_name):
 
 def get_user_tweets(screen_name):
     tweets = api.user_timeline(screen_name)
-    tweet_texts = {}
 
-    tweet_texts['first_tweet'] = tweets[0].text
-    tweet_texts['second_tweet'] = tweets[1].text
-    tweet_texts['third_tweet'] = tweets[2].text
-    tweet_texts['fourth_tweet'] = tweets[3].text
-    tweet_texts['fifth_tweet'] = tweets[4].text
+    key_list = []
+    for i in range(0, 5):
+        key_list.append("tweet_" + str(i))
 
-    print(type(tweet_texts))
+    text_list = []
+    for i in range(0, 5):
+        text_list.append(tweets[i].text)
 
-    return(tweet_texts)
+    print(type(key_list))
+    print(key_list)
+
+    print(type(text_list))
+    print(text_list)
+
+    text_dict = dict(zip(key_list, text_list))
+    print(type(text_dict))
+    print(text_dict)
+
+    return(text_dict)

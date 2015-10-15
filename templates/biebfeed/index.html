@@ -5,14 +5,25 @@
 {% block title %}BIEBFEED{% endblock %}
 
 {% block body_block %}
-<h1>
-    This is the BIEBFEED. Here are the 5 most recent Justin Bieber tweets.
-</h1>
+<h1>This is the BIEBFEED. Here are Justin Bieber's 5 most recent tweets!</h1>
+
+<h3>
 <ul>
-    <li>{{ first_tweet }}</li>
-    <li>{{ second_tweet }}</li>
-    <li>{{ third_tweet }}</li>
-    <li>{{ fourth_tweet }}</li>
-    <li>{{ fifth_tweet }}</li>
+    <li>{{ tweet_0 }}</li><br>
+    <li>{{ tweet_1 }}</li><br>
+    <li>{{ tweet_2 }}</li><br>
+    <li>{{ tweet_3 }}</li><br>
+    <li>{{ tweet_4 }}</li><br>
 </ul>
+</h3>
+
+<h4>
+<p>For this simple app, I built a small wrapper for the tweepy python module. It queries
+the twitter API and formats the result into a context_dict that is interpreted by a
+django template. This is pretty limited at this point, but in the future I hope to add
+in authentication functionality and allow users to have personalized lists of twitter
+feeds they want to follow. Furthermore, I will need a better way of displaying the
+tweets!</p>
+</h4>
+
 {% endblock %}
