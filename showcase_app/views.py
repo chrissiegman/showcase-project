@@ -33,7 +33,7 @@ def contact(request):
             email = EmailMessage(
                 'New contact form submission',
                 content,
-                "Your website" +'<hi@weddinglovely.com>',
+                "Your website",
                 ['youremail@gmail.com'],
                 headers = {'Reply-To': contact_email }
             )
