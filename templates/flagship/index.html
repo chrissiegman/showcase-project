@@ -6,18 +6,37 @@
 
 {% block body_block %}
 
-<canvas id="flagship" width="500" height="500" style="border:1px solid #000000;">
+<canvas id="flagship" width=500 height=500 style="border:1px solid #000000;">
 </canvas>
 
 <script>
-    function draw_flagship() {
-        var flagship_canvas = document.getElementById("flagship");
-        var flagship_context = flagship_canvas.getContext("2d");
-        flagship_context.fillStyle = "#FF0000";
-        flagship_context.fillRect(0, 0, 50, 50);
+
+var canvas = document.getElementById("flagship");
+var context = canvas.getContext("2d");
+
+var textX = 50;
+var textY = 50;
+
+function update() {
+    textX += 1
+    textY += 1
     }
 
-    draw_flagship();
+
+function draw() {
+    context.clearRect(0, 0, 500, 500);
+    context.fillStyle = "#FF0000";
+    context.fillText("Sup bro?!?", textX, textY);
+}
+
+var FPS = 30;
+setInterval(function() {
+    update();
+    draw();
+    }, 1000/FPS);
+
 </script>
+
+
 
 {% endblock %}
