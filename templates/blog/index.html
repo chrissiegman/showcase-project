@@ -7,10 +7,12 @@
 <h1>This is the blog page!</h1>
 
 {% for post in post_list %}
+
 <h2>{{ post.title }}</h2>
 <h4>{{ post.text|linebreaks }}</h4>
 <p>Written by <strong>{{ post.author }}</strong></p>
 <p>Published on <strong>{{ post.pub_date }}</strong></p>
+
 {% endfor %}
 
 {% endblock %}

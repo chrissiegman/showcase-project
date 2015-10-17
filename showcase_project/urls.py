@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^showcase/', include('showcase_app.urls')),
     url(r'^biebfeed/', include('biebfeed.urls', namespace='biebfeed')),
     url(r'^blog/', include('blog.urls', namespace='blog')),
+    url(r'^flagship/', include('flagship.urls', namespace='flagship')),
 ]
