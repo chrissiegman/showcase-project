@@ -51,6 +51,12 @@
                 <li><a href ="{% url 'projects' %}">Projects</a></li>
                 <li><a href ="{% url 'blog:index' %}">Blog</a></li>
                 <li><a href ="{% url 'contact' %}">Contact</a></li>
+                {% if user.is_authenticated %}
+                <li><a href ="{% url 'auth_logout'%}?next=/showcase/">Logout</a></li>
+                {% else %}
+                <li><a href ="{% url 'registration_register'%}">Register</a></li>
+                <li><a href ="{% url 'auth_login'%}">Login</a></li>
+                {% endif %}
           </ul>
         </div>
       </div>
@@ -64,10 +70,16 @@
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
            <div>
                 <h1>{% block body_block %}This is the default body_block content.{% endblock %}</h1>
-                </div>
+                  {% if user.is_authenticated %}
+                    <p>You are logged in as {{ user.username }}</p>
+                  {% else %}
+                    <p><a href="{% url 'auth_login' %}">Login</a> or <a href="{% url 'registration_register' %}">register</a> for full functionality!</p>
+                  {% endif %}
+           </div>
         </div>
       </div>
     </div>
+
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -76,5 +88,6 @@
     <script src="http://getbootstrap.com/dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="http://getbootstrap.com/assets/js/ie10-viewport-bug-workaround.js"></script>
+
   </body>
 </html>

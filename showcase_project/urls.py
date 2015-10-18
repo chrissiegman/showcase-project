@@ -25,4 +25,5 @@ urlpatterns = [
     url(r'^biebfeed/', include('biebfeed.urls', namespace='biebfeed')),
     url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^flagship/', include('flagship.urls', namespace='flagship')),
+    url(r'^accounts/', include('registration.backends.simple.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
