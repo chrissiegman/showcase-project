@@ -5,19 +5,20 @@
 {% block title %}PROJECTS{% endblock %}
 
 {% block body_block%}
-    <p>
-        This is the projects page.
-    </p>
-    <ul>
-        <li><a href="{% url 'biebfeed:index' %}">BIEBFEED</a> - a django app that uses tweepy to query Twitter API</li><br>
-        <li><a href="{% url 'blog:index' %}">BLOG</a> - a simple blog for keeping track of TO DO items, notes, etc.</li><br>
-        <li><a href="{% url 'flagship:index' %}">FLAGSHIP</a> - a JS/JQuery/Canvas game</li><br>
-    </ul>
 
-<h4>These projects are all separate django apps that I've wired into the "showcase_app" application.
-Once I implement authentication, they will have bonus features for registered users. The site will
+<h1><p>This is the projects page.</p></h1>
+
+<h3><ul>
+    <li><a href="{% url 'biebfeed:index' %}">BIEBFEED</a> - a django app that uses tweepy to query Twitter API</li><br>
+    <li><a href="{% url 'blog:index' %}">BLOG</a> - a simple blog for keeping track of TO DO items, notes, etc.</li><br>
+    <li><a href="{% url 'flagship:index' %}">FLAGSHIP</a> - a JS/JQuery/Canvas game</li><br>
+</ul></h3>
+
+<h4><p>
+    These projects are all separate django apps that I've wired into the "showcase_app" application.
+    Once I implement authentication, they will have bonus features for registered users. The site will
     consist of several pluggable, reusable applications.
-
-</h4>
+</p></h4>
+<br>
 
 {% endblock %}
