@@ -31,13 +31,19 @@ var player = {
         }
     };
 
+// KEY HANDLER
+// handles user input
 var rightDown = false;
 var leftDown = false;
 var upDown = false;
 var downDown = false;
+var spaceDown = false;
 
 function onKeyDown(event) {
-    if (event.keyCode == 39) {
+    if (event.keyCode == 32) {
+        spaceDown = true;
+        }
+    else if (event.keyCode == 39) {
         rightDown = true;
         }
     else if (event.keyCode == 37) {
@@ -52,7 +58,10 @@ function onKeyDown(event) {
     }
 
 function onKeyUp(event) {
-    if (event.keyCode == 39) {
+    if (event.keyCode ==32) {
+        spaceDown = false;
+        }
+    else if (event.keyCode == 39) {
         rightDown = false;
         }
     else if (event.keyCode == 37) {
@@ -71,16 +80,97 @@ $(document).keydown(onKeyDown);
 $(document).keyup(onKeyUp);
 
 function update() {
-    if (rightDown) player.x += 4;
-    else if (leftDown) player.x -= 4;
-    else if (upDown) player.y -= 4;
-    else if (downDown) player.y += 4;
-    }
+    if (spaceDown) {
+        player.shoot();
+        }
+    if (rightDown) {
+        player.x += 8;
+        }
+    if (leftDown) {
+        player.x -= 8;
+        }
+    if (upDown) {
+        player.y -= 8;
+        }
+    if (downDown) {
+        player.y += 8;
+        }
+// simple boundaries hard-coded yucky
+    if (player.x <= 0) {
+        player.x = 0;
+        }
+    if (player.x >= 365) {
+        player.x = 365;
+        }
+    if (player.y <= 0) {
+        player.y = 0;
+        }
+    if (player.y >= 365) {
+        player.y = 365;
+        }
 
+    playerBullets.forEach(function(bullet) {
+        bullet.update();
+        });
+
+    playerBullets = playerBullets.filter(function(bullet) {
+        return bullet.active;
+        });
+}
+
+var playerBullets = [];
+
+function Bullet(I) {
+    I.active = true;
+    I.xVelocity = 0;
+    I.yVelocity = -I.speed;
+    I.width = 3;
+    I.height = 3;
+    I.color = "#000";
+
+    I.inBounds = function() {
+        return I.x >= 0 && I.x <= 400 && I.y >= 0 && I.y <= 400;
+    };
+
+    I.draw = function() {
+        context.fillStyle = this.color;
+        context.fillRect(this.x, this.y, this.width, this.height);
+    };
+
+    I.update = function() {
+        I.x += I.xVelocity;
+        I.y += I.yVelocity;
+
+        I.active = I.active && I.inBounds();
+    };
+
+    return I;
+}
+
+
+player.shoot = function() {
+    var bulletPosition = this.midpoint();
+
+    playerBullets.push(Bullet({
+        speed: 10,
+        x: bulletPosition.x,
+        y: bulletPosition.y,
+        }));
+    };
+
+player.midpoint = function () {
+    return {
+        x: this.x + this.width/2,
+        y: this.y + this.height/2
+    };
+};
 
 function draw() {
     context.clearRect(0, 0, 500, 500);
     player.draw();
+    playerBullets.forEach(function(bullet) {
+        bullet.draw();
+        });
 }
 
 var FPS = 30;
