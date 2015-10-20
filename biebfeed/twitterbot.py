@@ -16,7 +16,6 @@ def get_user_tweets(screen_name):
     tweets = api.user_timeline(screen_name)
 
     key_list = []
-
     for i in range(0, 5):
         key_list.append(screen_name + "_tweet_" + str(i))
 
