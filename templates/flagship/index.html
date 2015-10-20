@@ -36,10 +36,11 @@ var player = {
     y: 270,
     width: 35,
     height: 35,
-    draw: function() {
-        canvas.fillStyle = this.color;
-        canvas.fillRect(this.x, this.y, this.width, this.height);
-        }
+    };
+
+player.sprite = Sprite("player");
+player.draw = function() {
+    this.sprite.draw(canvas, this.x, this.y);
     };
 
 // KEY HANDLER
@@ -187,9 +188,10 @@ function Enemy(I) {
     return I.x >= 0 && I.x <= CANVAS_WIDTH && I.y >= 0 && I.y <= CANVAS_HEIGHT;
     };
 
+    I.sprite = Sprite("enemy")
+
     I.draw = function() {
-    canvas.fillStyle = this.color;
-    canvas.fillRect(this.x, this.y, this.width, this.height);
+        this.sprite.draw(canvas, this.x, this.y);
     };
 
     I.update = function() {
