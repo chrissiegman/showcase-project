@@ -17,12 +17,18 @@ def get_user_tweets(screen_name):
 
     key_list = []
     for i in range(0, 5):
-        key_list.append("tweet_" + str(i))
+        key_list.append(screen_name + "_tweet_" + str(i))
 
     text_list = []
     for i in range(0, 5):
         text_list.append(tweets[i].text)
 
     text_dict = dict(zip(key_list, text_list))
+    print(text_dict)
 
     return(text_dict)
+
+
+
+def get_user_list_tweets(user_list):
+    pass
