@@ -31,6 +31,7 @@ canvasElement.appendTo('.canvas_element');
 
 
 var player = {
+    active: true,
     color: "#FF0000",
     x: 220,
     y: 270,
@@ -41,6 +42,11 @@ var player = {
 player.sprite = Sprite("player");
 player.draw = function() {
     this.sprite.draw(canvas, this.x, this.y);
+    };
+
+player.explode = function() {
+    this.active = false;
+    console.log('player down');
     };
 
 // KEY HANDLER
@@ -133,13 +139,19 @@ function update() {
         enemy.update();
         });
 
-    enemies.filter(function(enemy) {
+    enemies = enemies.filter(function(enemy) {
         return enemy.active;
         });
+
+    if (player.active == false) {
+        gameOver();
+        }
 
     if(Math.random() < 0.1) {
         enemies.push(Enemy());
         }
+
+    handleCollisions();
 };
 
 var playerBullets = [];
@@ -194,6 +206,11 @@ function Enemy(I) {
         this.sprite.draw(canvas, this.x, this.y);
     };
 
+    I.explode = function() {
+        this.active = false;
+        console.log('enemy down');
+        };
+
     I.update = function() {
         I.x += I.xVelocity;
         I.y += I.yVelocity;
@@ -203,6 +220,8 @@ function Enemy(I) {
 
         I.active = I.active && I.inBounds();
         };
+
+
 
     return I;
 };
@@ -224,16 +243,57 @@ player.midpoint = function () {
     };
 };
 
-function draw() {
-    canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    player.draw();
+function collides(a, b) {
+    return a.x < b.x + b.width &&
+           a.x + a.width > b.x &&
+           a.y < b.y + b.height &&
+           a.y + a.height > b.y;
+           }
+
+function handleCollisions() {
     playerBullets.forEach(function(bullet) {
-        bullet.draw();
+        enemies.forEach(function(enemy) {
+            if (collides(bullet, enemy)) {
+                enemy.explode();
+                bullet.active = false;
+                console.log('bullet/enemy collision detected');
+                }
+            });
         });
     enemies.forEach(function(enemy) {
-        enemy.draw();
+        if (collides(enemy, player)) {
+            enemy.explode();
+            player.explode();
+            console.log('player collision detected');
+            }
         });
 }
+
+function draw() {
+    if (isGameOver == false) {
+        canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        player.draw();
+        playerBullets.forEach(function(bullet) {
+           bullet.draw();
+           });
+        enemies.forEach(function(enemy) {
+           enemy.draw();
+           });
+        }
+    else {
+        canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+        canvas.fillStyle = "#000";
+        canvas.fillText("GAME OVER! Reload to play again", 200, 200);
+        }
+}
+
+var isGameOver = false;
+
+function gameOver() {
+    isGameOver = true;
+    console.log('game over');
+
+    }
 
 var FPS = 30;
 setInterval(function() {
