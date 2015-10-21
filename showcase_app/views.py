@@ -47,3 +47,32 @@ def contact(request):
             #return render(request, 'showcase_app/projects.html', {})
     else:
         return render(request, 'showcase_app/contact.html', {'form': form_class})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

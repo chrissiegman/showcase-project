@@ -15,16 +15,9 @@ def print_user_info(screen_name):
 def get_user_tweets(screen_name):
     tweets = api.user_timeline(screen_name)
 
-    key_list = []
-    for i in range(0, 5):
-        key_list.append(screen_name + "_tweet_" + str(i))
-
     text_list = []
     for i in range(0, 5):
         text_list.append(tweets[i].text)
 
-    text_dict = dict(zip(key_list, text_list))
-    print(text_dict)
-
-    return(text_dict)
+    return(text_list)
 

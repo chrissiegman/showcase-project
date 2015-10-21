@@ -1,17 +1,16 @@
 from django.shortcuts import render, HttpResponse
-
 from biebfeed import twitterbot
-
+from biebfeed.models import twitter_target
 
 
 def index(request):
     context_dict = {}
-    user_list = ['justinbieber', 'taylorswift13']
+    twitter_targets = twitter_target.objects.all()
+    context_dict['twitter_targets'] = twitter_targets
+    print(twitter_targets)
 
+    for target in twitter_targets:
+        context_dict['target_tweet_list'] = twitterbot.get_user_tweets(target.target_username)
 
-    for user in user_list:
-        context_dict[user] = twitterbot.get_user_tweets(user)
-
-    context_dict['user_list'] = user_list
-
+    print(context_dict)
     return render(request, 'biebfeed/index.html', context_dict)
