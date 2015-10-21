@@ -1,11 +1,11 @@
 from django.shortcuts import render, HttpResponse
 from biebfeed import twitterbot
-from biebfeed.models import twitter_target
+from biebfeed.models import TwitterTarget
 
 
 def index(request):
     context_dict = {}
-    twitter_targets = twitter_target.objects.all()
+    twitter_targets = TwitterTarget.objects.filter(user__username__contains='chris')
     context_dict['twitter_targets'] = twitter_targets
     print(twitter_targets)
 

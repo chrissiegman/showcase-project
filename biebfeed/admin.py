@@ -1,5 +1,5 @@
 from django.contrib import admin
-
+from biebfeed.models import TwitterTarget
 # Register your models here.
-from biebfeed.models import twitter_target
-admin.site.register(twitter_target)
+
+admin.site.register(TwitterTarget)
