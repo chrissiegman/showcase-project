@@ -7,6 +7,12 @@
 {% block body_block %}
 <h1>This is the BIEBFEED.</h1>
 
+{% if user.is_authenticated %}
+<h1>You are logged in. Customizable list coming soon!</h1>
+{% else %}
+<h1><a href ="{% url 'auth_login'%}">Login</a> to customize your list of friends!</h1>
+{% endif %}
+
 {% for key, value, other in master_tweet_dict.items %}
         <h1>{{ key }}</h1>
             <ul>
