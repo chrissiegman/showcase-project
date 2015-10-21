@@ -7,14 +7,16 @@
 {% block body_block %}
 <h1>This is the BIEBFEED.</h1>
 
-<ul>
-{% for target_username in twitter_targets %}
-    <strong>{{ target_username }}:</strong><br><br>
-        {% for tweet in target_tweet_list %}
-            <li>{{ tweet }}</li>
-        {% endfor %}<br>
-{% endfor %}
-</ul>
+{% for key, value, other in master_tweet_dict.items %}
+        <h1>{{ key }}</h1>
+            <ul>
+                <li>{{ value.0 }}</li>
+                <li>{{ value.1 }}</li>
+                <li>{{ value.2 }}</li>
+                <li>{{ value.3 }}</li>
+                <li>{{ value.4 }}</li>
+            </ul>
+{% endfor %}<br>
 
 
 <h4>

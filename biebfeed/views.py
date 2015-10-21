@@ -4,13 +4,16 @@ from biebfeed.models import TwitterTarget
 
 
 def index(request):
-    context_dict = {}
-    twitter_targets = TwitterTarget.objects.filter(user__username__contains='chris')
-    context_dict['twitter_targets'] = twitter_targets
-    print(twitter_targets)
+    current_user = request.user
+    twitter_targets = TwitterTarget.objects.filter(user__username__contains=current_user)
 
+    master_tweet_dict = {}
     for target in twitter_targets:
-        context_dict['target_tweet_list'] = twitterbot.get_user_tweets(target.target_username)
+        master_tweet_dict[target.target_username] = twitterbot.get_user_tweets(target.target_username)
 
-    print(context_dict)
+    context_dict = {}
+    context_dict['twitter_targets'] = twitter_targets
+    context_dict['master_tweet_dict'] = master_tweet_dict
+
+    print(master_tweet_dict)
     return render(request, 'biebfeed/index.html', context_dict)
