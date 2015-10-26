@@ -3,6 +3,7 @@ from django.views.generic import ListView
 
 from redditclone.models import Link
 
-# Create your views here.
 class LinkListView(ListView):
-    model = Link
+    model = Link()
+    queryset = Link.with_votes.all()
+    paginate_by = 5

@@ -1,5 +1,16 @@
 from django.contrib import admin
 from showcase_app.models import UserProfile
+from django.contrib.auth import get_user_model
+
+from django.contrib.auth.admin import UserAdmin
+
+class UserProfileInline(admin.StackedInline):
+    model = UserProfile
+    can_delete = False
 
 
-admin.site.register(UserProfile)
+class UserProfileAdmin(UserAdmin):
+    inlines=(UserProfileInline, )
+
+admin.site.unregister(get_user_model())
+admin.site.register(get_user_model(), UserProfileAdmin)
