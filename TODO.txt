@@ -1,0 +1,12 @@
+TODO LIST
+
+CONTACT FORM
+	refactor it
+	make it its own app
+
+BLOG
+	add comments!
+
+REDDITCLONE
+	add functionality
+
