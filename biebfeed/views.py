@@ -24,3 +24,24 @@ def index(request):
         context_dict['master_tweet_dict'] = master_tweet_dict
 
     return render(request, 'biebfeed/index.html', context_dict)
+
+def friends(request):
+    current_user = request.user
+    context_dict = {}
+
+    friends = TwitterTarget.objects.filter(user__username__contains=current_user)
+    friend_list = []
+
+    for friend in friends:
+        friend_list.append(friend.target_username)
+
+
+    context_dict['friend_list'] = friend_list
+
+    return render(request, 'biebfeed/friends.html', context_dict)
+
+def delete_friend(request):
+    return HttpResponse('friend removed')
+
+def add_friend(request):
+    return HttpResponse('friend added')

@@ -27,4 +27,5 @@ urlpatterns = [
     url(r'^blog/', include('blog.urls', namespace='blog')),
     url(r'^flagship/', include('flagship.urls', namespace='flagship')),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^redditclone/', include('redditclone.urls', namespace='redditclone')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

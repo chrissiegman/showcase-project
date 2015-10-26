@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}BIEBFEED - friends{% endblock %}
+
+{% block body_block %}
+
+<h1>These are your friends!</h1>
+<ul>
+{% for friend in friend_list %}
+    <li>{{ friend }} - <a href="{% url 'biebfeed:delete_friend' %}">REMOVE</a></li>
+{% endfor %}
+</ul>
+
+<form id="add_friend" method="post" action="{% url 'biebfeed:add_friend' %}">
+
+    {% csrf_token %}
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+
+    {% for field in form.visible_fields %}
+        {{ field.errors }}
+        {{ field.help_text }}
+        {{ field }}
+    {% endfor %}
+
+    <input type="submit" name="submit" value="Add Friend">
+
+</form>
+
+
+
+{% endblock %}

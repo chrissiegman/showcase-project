@@ -9,6 +9,7 @@
 
 {% if user.is_authenticated %}
 <h1>You are logged in. Customizable list coming soon!</h1>
+<h1><a href="{% url 'biebfeed:friends' %}">FRIENDS</a></h1>
 {% else %}
 <h1><a href ="{% url 'auth_login'%}">Login</a> to customize your list of friends!</h1>
 {% endif %}
