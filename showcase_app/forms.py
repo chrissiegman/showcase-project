@@ -1,4 +1,5 @@
 from django import forms
+from showcase_app.models import UserProfile
 
 class ContactForm(forms.Form):
     contact_name = forms.CharField(required=True)
@@ -10,3 +11,9 @@ class ContactForm(forms.Form):
         self.fields['contact_name'].label = "Your name:"
         self.fields['contact_email'].label = "Your email:"
         self.fields['message'].label = "Message:"
+
+
+class UserProfileForm(forms.ModelForm):
+    class Meta:
+        model = UserProfile
+        exclude = ('user',)
