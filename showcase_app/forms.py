@@ -1,5 +1,7 @@
 from django import forms
 from showcase_app.models import UserProfile
+from django.core.urlresolvers import reverse_lazy
+from django.views.generic.edit import UpdateView
 
 class ContactForm(forms.Form):
     contact_name = forms.CharField(required=True)
@@ -16,4 +18,4 @@ class ContactForm(forms.Form):
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        exclude = ('user',)
+        exclude = ['bio' ]

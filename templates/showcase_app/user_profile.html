@@ -9,7 +9,7 @@
 </div>
 {% endif %}
 {% if object.username == user.username %}
-<p><a href='{% url "edit_profile" %}'>Edit my profile</a></p>
+<p><a href='{% url "showcase_app:edit_profile" pk=object.pk %}'>Edit my profile</a></p>
 {% endif %}
 
 {% endblock %}

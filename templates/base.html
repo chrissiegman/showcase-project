@@ -48,12 +48,12 @@
 
           <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-                <li><a href="{% url 'index' %}">Home</a></li>
-                <li><a href="{% url 'projects' %}">Projects</a></li>
+                <li><a href="{% url 'showcase_app:index' %}">Home</a></li>
+                <li><a href="{% url 'showcase_app:projects' %}">Projects</a></li>
                 <li><a href="{% url 'blog:index' %}">Blog</a></li>
-                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'showcase_app:contact' %}">Contact</a></li>
                 {% if user.is_authenticated %}
-		<li><a href="{% url 'profile' slug=user.username %}">{{ user.username }}</a></li>
+		        <li><a href="{% url 'showcase_app:profile' pk=user.pk %}">{{ user.username }}</a></li>
                 <li><a href="{% url 'auth_logout'%}?next=/showcase/">Logout</a></li>
                 {% else %}
                 <li><a href="{% url 'registration_register'%}">Register</a></li>
