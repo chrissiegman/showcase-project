@@ -3,6 +3,7 @@ from showcase_app import views
 from showcase_app.views import UserProfileDetailView, UserProfileEditView
 from django.contrib.auth.decorators import login_required as auth
 from django.core.urlresolvers import reverse_lazy
+from showcase_app.models import UserProfile
 
 
 urlpatterns = patterns('showcase_app.views',

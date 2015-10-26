@@ -8,3 +8,6 @@ class UserProfile(models.Model):
     
     def __str__(self):
         return "%s's profile" % self.user
+
+    def get_absolute_url(self):
+        return reverse('showcase_app.views.profile', args=[str(self.pk)])
